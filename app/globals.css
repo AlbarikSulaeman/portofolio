@@ -1,26 +1,362 @@
 @import "tailwindcss";
 
+/* Define theme dengan CSS custom properties */
+@theme {
+  /* Colors */
+  --color-wood-primary: #8B7355;
+  --color-wood-secondary: #A67C52;
+  --color-wood-accent: #D4A76A;
+  --color-wood-background: #FAF3E0;
+  --color-wood-text: #5D4037;
+  --color-wood-text-light: #795548;
+  --color-wood-border: #BCAAA4;
+  
+  /* Border radius */
+  --radius-wood: 0.75rem;
+  --radius-wood-lg: 1rem;
+  --radius-wood-xl: 1.5rem;
+  
+  /* Box shadows */
+  --shadow-wood: 0 4px 20px rgba(139, 115, 85, 0.15);
+  --shadow-wood-lg: 0 10px 40px rgba(139, 115, 85, 0.2);
+  --shadow-wood-inner: inset 0 2px 4px rgba(139, 115, 85, 0.1);
+  
+  /* Animations */
+  --animate-fade-in: fadeIn 0.5s ease-in-out;
+  --animate-slide-up: slideUp 0.3s ease-out;
+  --animate-slide-down: slideDown 0.3s ease-out;
+}
+
+/* Define CSS variables untuk env override */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #8B7355;
+  --color-secondary: #A67C52;
+  --color-accent: #D4A76A;
+  --color-background: #FAF3E0;
+  --color-text: #5D4037;
+  --color-text-light: #795548;
+  --color-border: #BCAAA4;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Keyframes untuk animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Define custom utility classes */
+@layer utilities {
+  /* Color utilities dengan CSS variables */
+  .border-wood-border {
+    border-color: var(--color-wood-border);
+  }
+  
+  .bg-wood-bg {
+    background-color: var(--color-wood-background);
+  }
+  
+  .text-wood-text {
+    color: var(--color-wood-text);
+  }
+  
+  .text-wood-text-light {
+    color: var(--color-wood-text-light);
+  }
+  
+  .bg-wood-primary {
+    background-color: var(--color-wood-primary);
+  }
+  
+  .bg-wood-secondary {
+    background-color: var(--color-wood-secondary);
+  }
+  
+  .bg-wood-accent {
+    background-color: var(--color-wood-accent);
+  }
+  
+  .text-wood-primary {
+    color: var(--color-wood-primary);
+  }
+  
+  .text-wood-accent {
+    color: var(--color-wood-accent);
+  }
+  
+  /* Opacity utilities - PERBAIKAN DI SINI */
+  /* Jangan gunakan escape karakter, langsung tulis class dengan slash */
+  /* Tailwind akan menangani ini secara otomatis */
+  
+  /* Alternatif 1: Buat utility classes khusus untuk opacity */
+  .border-wood-border-30 {
+    border-color: rgb(from var(--color-wood-border) r g b / 0.3);
+  }
+  
+  .border-wood-border-50 {
+    border-color: rgb(from var(--color-wood-border) r g b / 0.5);
+  }
+  
+  .bg-wood-primary-10 {
+    background-color: rgb(from var(--color-wood-primary) r g b / 0.1);
+  }
+  
+  .bg-wood-primary-5 {
+    background-color: rgb(from var(--color-wood-primary) r g b / 0.05);
+  }
+  
+  .bg-wood-primary-20 {
+    background-color: rgb(from var(--color-wood-primary) r g b / 0.2);
+  }
+  
+  .bg-wood-accent-20 {
+    background-color: rgb(from var(--color-wood-accent) r g b / 0.2);
+  }
+  
+  .bg-wood-accent-30 {
+    background-color: rgb(from var(--color-wood-accent) r g b / 0.3);
+  }
+  
+  .border-wood-primary-20 {
+    border-color: rgb(from var(--color-wood-primary) r g b / 0.2);
+  }
+  
+  .border-wood-accent-30 {
+    border-color: rgb(from var(--color-wood-accent) r g b / 0.3);
+  }
+  
+  /* Background images */
+  .bg-wood-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  .bg-wood-gradient {
+    background-image: linear-gradient(135deg, var(--color-wood-primary) 0%, var(--color-wood-secondary) 100%);
+  }
+  
+  .bg-wood-light-gradient {
+    background-image: linear-gradient(135deg, rgba(139, 115, 85, 0.1) 0%, rgba(166, 124, 82, 0.1) 100%);
+  }
+  
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  /* Glass effect */
+  .glass-effect {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
+/* Define custom components */
+@layer components {
+  .btn-wood {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: var(--radius-wood);
+    font-weight: 500;
+    transition: all 300ms;
+    background-color: var(--color-wood-primary);
+    color: white;
+    box-shadow: var(--shadow-wood);
+    
+    &:hover {
+      opacity: 0.9;
+      box-shadow: var(--shadow-wood-lg);
+    }
+    
+    &:active {
+      transform: scale(0.98);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  .btn-wood-outline {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: var(--radius-wood);
+    font-weight: 500;
+    transition: all 300ms;
+    border: 1px solid var(--color-wood-primary);
+    color: var(--color-wood-primary);
+    
+    &:hover {
+      background-color: var(--color-wood-primary);
+      color: white;
+    }
+    
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+  
+  .btn-wood-accent {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: var(--radius-wood);
+    font-weight: 500;
+    transition: all 300ms;
+    background-color: var(--color-wood-accent);
+    color: var(--color-wood-text);
+    box-shadow: var(--shadow-wood);
+    
+    &:hover {
+      opacity: 0.9;
+    }
+    
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+  
+  .card-wood {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius-wood-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-wood);
+    border: 1px solid rgb(from var(--color-wood-border) r g b / 0.5);
+    transition: all 300ms;
+    
+    &:hover {
+      box-shadow: var(--shadow-wood-lg);
+    }
+  }
+  
+  .input-wood {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: var(--radius-wood);
+    border: 1px solid var(--color-wood-border);
+    background-color: rgba(255, 255, 255, 0.9);
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgb(from var(--color-wood-accent) r g b / 0.5);
+    }
+    
+    &::placeholder {
+      color: rgb(from var(--color-wood-text-light) r g b / 0.5);
+    }
+  }
+  
+  .badge-wood {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: rgb(from var(--color-wood-primary) r g b / 0.1);
+    color: var(--color-wood-primary);
+    border: 1px solid rgb(from var(--color-wood-primary) r g b / 0.2);
+  }
+  
+  .badge-wood-accent {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: rgb(from var(--color-wood-accent) r g b / 0.2);
+    color: var(--color-wood-text);
+    border: 1px solid rgb(from var(--color-wood-accent) r g b / 0.3);
+  }
+  
+  .nav-link {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: var(--radius-wood);
+    transition: all 300ms;
+    
+    &:hover {
+      background-color: rgb(from var(--color-wood-primary) r g b / 0.1);
+      color: var(--color-wood-primary);
+    }
+    
+    &:active {
+      background-color: rgb(from var(--color-wood-primary) r g b / 0.2);
+    }
+    
+    &.active {
+      background-color: rgb(from var(--color-wood-primary) r g b / 0.2);
+      color: var(--color-wood-primary);
+      font-weight: 500;
+    }
+  }
+}
+
+/* Base styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-wood-background);
+  color: var(--color-wood-text);
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-wood-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(from var(--color-wood-primary) r g b / 0.3);
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: rgb(from var(--color-wood-primary) r g b / 0.5);
+  }
+}
+
+::selection {
+  background-color: rgb(from var(--color-wood-accent) r g b / 0.3);
 }
