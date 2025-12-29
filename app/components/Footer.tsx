@@ -83,10 +83,10 @@ export default function Footer({ profile }: ProfileProps) {
           {/* Quick Links */}
           <div>
             <h4 className="font-bold mb-4" style={{ color: theme.primary }}>
-              Quick Links
+              Other
             </h4>
-            <ul className="space-y-2 text-sm">
-              {['Home', 'Projects', 'Skills', 'Experience', 'Contact'].map(
+            <div className="space-y-2 text-sm">
+              {/* {['Home', 'Projects', 'Skills', 'Experience', 'Contact'].map(
                 (item) => (
                   <li key={item}>
                     <a
@@ -97,8 +97,17 @@ export default function Footer({ profile }: ProfileProps) {
                     </a>
                   </li>
                 )
+              )} */}
+              {profile.cv_url && (
+                <a
+                  href={profile.cv_url}
+                  download
+                  className="flex items-center gap-2 text-wood-text-light hover:text-wood-primary transition-colors"
+                >
+                  Download CV
+                </a>
               )}
-            </ul>
+            </div>
           </div>
 
           {/* Connect */}

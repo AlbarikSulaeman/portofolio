@@ -34,7 +34,7 @@ export default function Navbar({ profile }: NavbarProps) {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-2">
-            <a href="#projects" className="nav-link">
+            {/* <a href="#projects" className="nav-link">
               Projects
             </a>
             <a href="#skills" className="nav-link">
@@ -45,7 +45,20 @@ export default function Navbar({ profile }: NavbarProps) {
             </a>
             <a href="#contact" className="nav-link">
               Contact
-            </a>
+            </a> */}
+            {profile.cv_url && (
+                <a
+                  href={profile.cv_url}
+                  download
+                  className="btn-wood-outline flex items-center space-x-2"
+                  style={{
+                    borderColor: theme.accent,
+                    color: theme.accent,
+                  }}
+                >
+                <span>Download CV</span>
+              </a>
+              )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -66,7 +79,7 @@ export default function Navbar({ profile }: NavbarProps) {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 animate-slide-down">
             <div className="flex flex-col space-y-2">
-              <a 
+              {/* <a 
                 href="#projects" 
                 className="nav-link active:bg-wood-primary/20"
                 onClick={() => setIsMenuOpen(false)}
@@ -93,7 +106,20 @@ export default function Navbar({ profile }: NavbarProps) {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
+              </a> */}
+              {profile.cv_url && (
+                <a
+                  href={profile.cv_url}
+                  download
+                  className="btn-wood-outline flex items-center space-x-2"
+                  style={{
+                    borderColor: theme.accent,
+                    color: theme.accent,
+                  }}
+                >
+                <span>Download CV</span>
               </a>
+              )}
             </div>
           </div>
         )}

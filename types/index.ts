@@ -65,6 +65,7 @@ export interface PortfolioProject {
     profile_id: string
     project_name: string
     project_type: 'Web' | 'Mobile' | 'Desktop' | 'Other'
+    category: 'work' | 'personal'
     description: string | null
     technologies: string[]
     project_url: string | null
@@ -76,6 +77,16 @@ export interface PortfolioProject {
     client_name: string | null
     role: string
     featured: boolean
+    id_tunnel: string | null
+    created_at: string
+    updated_at: string
+}
+
+export interface TunnelStatus {
+    id: string
+    id_tunnel: string
+    web_url: string
+    online_status: 'up' | 'down' | 'unknown'
     created_at: string
     updated_at: string
 }

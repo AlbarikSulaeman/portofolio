@@ -44,7 +44,7 @@ export class PortfolioAPI {
                 .from('portfolio_projects')
                 .select('*')
                 .eq('profile_id', profile.id)
-                .order('start_date', { ascending: false }),
+                .order('project_name', { ascending: true }),
                 
                 supabase
                 .from('portfolio_certifications')
