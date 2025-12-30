@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 interface SkillsSectionProps {
   skills: PortfolioSkill[]
-  workExperiences?: PortfolioWorkExperience[]
+  workExperiences: PortfolioWorkExperience[]
 }
 
 const categoryIcons = {
